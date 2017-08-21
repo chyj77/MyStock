@@ -1,0 +1,19 @@
+package com.cyj.mystock;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+
+
+
+public class MyDataSource extends BasicDataSource {
+
+
+
+	@Override
+	public Connection getConnection(String username, String password) throws SQLException {
+	    // TODO Auto-generated method stub
+	    return createDataSource().getConnection();
+	}
+}
