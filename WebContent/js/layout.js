@@ -48,7 +48,14 @@ Ext.onReady(function() {
 					canDropOnSecond : true,
 					html:"<iframe src="+path+"/spcz/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 					leaf : true
-				} , {
+				} , , {
+					id:'l10',
+					text : '持仓股票',
+					canDropOnFirst : true,
+					canDropOnSecond : true,
+					html:"<iframe src="+path+"/ccgp/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
+					leaf : true
+				} ,{
 					id:'l4',
 					text : '广发股票流水',
 					canDropOnFirst : true,
