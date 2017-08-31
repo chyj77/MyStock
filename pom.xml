@@ -7,12 +7,6 @@
 	<name>MyStockGit</name>
 
 	<!--项目属性 -->
-	<properties>
-		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<httpsPort>8443</httpsPort>
-		<httpPort>80</httpPort>
-	</properties>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/antlr/antlr -->
