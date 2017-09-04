@@ -25,6 +25,8 @@ public class Ccgp {
 	private Double jiacha;
 	
 	private Double zdl;
+	
+	private String ccday;
 
 	public String getRecid() {
 		return recid;
@@ -96,6 +98,14 @@ public class Ccgp {
 
 	public void setZdl(Double zdl) {
 		this.zdl = zdl;
+	}
+
+	public String getCcday() {
+		return ccday;
+	}
+
+	public void setCcday(String ccday) {
+		this.ccday = ccday;
 	}
 	
 	

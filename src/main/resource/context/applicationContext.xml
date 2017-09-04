@@ -4,6 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	
+	<context:property-placeholder  location="classpath:conf/conf.properties,classpath:conf/redis.properties" />
+	
 	<import resource="classpath:/context/data-source.xml" />
+	<import resource="classpath:/context/redis-source.xml" />
 	
 </beans>

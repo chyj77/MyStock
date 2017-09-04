@@ -9,7 +9,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
 
-	<context:property-placeholder location="classpath:conf/conf.properties" />
+	
 	
 	
 	<!-- 普通数据源 -->
@@ -41,12 +41,14 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.flushmode">auto</prop>
 				<prop key="hibernate.transaction.coordinator_class">jdbc</prop>
 				<prop key="hibernate.jdbc.fetch_size">50</prop>
 				<prop key="hibernate.jdbc.batch_size">50</prop>
+				<prop key="hibernate.connection.username">${jdbc.username}</prop>  
+                <prop key="hibernate.connection.password">${jdbc.password}</prop> 
 				<!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
 			</props>
 		</property>
@@ -100,4 +102,28 @@
    
 	<context:component-scan base-package="com.cyj.mystock.service" />
 	<context:component-scan base-package="com.cyj.mystock.dao" />
+	
+	<!-- 定时任务，将消息从redis持久化到MySql-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="queryStockTrigger"/>
+            </list>
+        </property>
+        <property name="autoStartup" value="true"/>
+        <!-- 每台集群机器部署应用的时候会更新触发器
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="applicationContextSchedulerContextKey" value="appli"/>-->
+    </bean>
+    <bean id="queryStockTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="queryStockJobDetail"/>
+        <property name="cronExpression" value="0 30 14,15 * * 1-5"/><!-- 每隔2分钟触发一次 -->
+    </bean>
+    <bean id="queryStockJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="queryStockJob"/>
+        <property name="targetMethod" value="execute"/>
+        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="queryStockJob" class="com.cyj.mystock.job.QueryStockJob"/>
 </beans>
