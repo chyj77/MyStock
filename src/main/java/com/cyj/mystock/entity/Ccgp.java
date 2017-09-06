@@ -1,40 +1,37 @@
 package com.cyj.mystock.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
 
-
+@Entity
+@Table(name = "CCGP")
 public class Ccgp {
 
-	
-	private String recid;
-	
+
+	@Column(name = "rq")
 	private String rq;
-	
+	@Id
+	@Column(name = "code")
 	private String code;
-	
-	private String name;	
-	
+	@Column(name = "name")
+	private String name;
+	@Column(name = "buyprice")
 	private String buyprice;
-	
+	@Column(name = "sl")
 	private String sl;
-	
+
 	private String nowprice;
-	
+
 	private Double jiacha;
-	
+
 	private Double zdl;
-	
+	@Column(name = "ccday")
 	private String ccday;
-
-	public String getRecid() {
-		return recid;
-	}
-
-	public void setRecid(String recid) {
-		this.recid = recid;
-	}
 
 	public String getRq() {
 		return rq;
