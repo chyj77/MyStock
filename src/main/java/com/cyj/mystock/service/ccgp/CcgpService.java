@@ -1,13 +1,12 @@
 package com.cyj.mystock.service.ccgp;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.cyj.mystock.cache.CcgpCache;
 import com.cyj.mystock.entity.CcgpVO;
+import com.cyj.mystock.thread.QueryStockThread;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -311,5 +310,20 @@ public class CcgpService {
      */
     protected RedisSerializer<String> getRedisSerializer() {
         return redisTemplate.getStringSerializer();
+    }
+
+    public void reload(){
+        QueryStockThread thread = QueryStockThread.getInstance();
+        QueryStockThread.IsBreak=false;
+        this.init();
+        SimpleDateFormat format = new SimpleDateFormat("HHmm");
+        Date date = new Date();
+        String nowDateValue = format.format(date);
+        int now = Integer.parseInt(nowDateValue);
+        System.out.println("---------now---------"+now);
+        if(now<1510 && now>=915) {
+            QueryStockThread.IsBreak=true;
+            new Thread(thread).start();
+        }
     }
 }

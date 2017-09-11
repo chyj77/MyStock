@@ -1,21 +1,16 @@
 package com.cyj.mystock.service.cdcp2r;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.cyj.mystock.dao.cdcp2r.Cdcp2rDao;
+import com.cyj.mystock.entity.Cdcp2r;
+import com.cyj.mystock.entity.Cdcp2rVo;
+import com.cyj.mystock.service.ccgp.CcgpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cyj.mystock.dao.cdcp2r.Cdcp2rDao;
-import com.cyj.mystock.entity.Cdcp2r;
-import com.cyj.mystock.entity.Cdcp2rVo;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 @Transactional(transactionManager="transactionManager")
@@ -23,6 +18,8 @@ public class Cdcp2rService {
 
 	@Autowired
 	private Cdcp2rDao<?> dao;
+	@Autowired
+	CcgpService ccgpService;
 	
 	public Cdcp2rDao<?> getDao() {
 		return dao;
@@ -124,8 +121,10 @@ public class Cdcp2rService {
 	
 	public void saveOrUpdate(Cdcp2r cdcp2r){
 		this.dao.saveOrUpdate(cdcp2r);
+		ccgpService.reload();
 	}
 	public void delete(String id){
 		this.dao.delete(id);
+		ccgpService.reload();
 	}
 }

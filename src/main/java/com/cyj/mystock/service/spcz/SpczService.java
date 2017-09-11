@@ -1,25 +1,17 @@
 package com.cyj.mystock.service.spcz;
 
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import com.cyj.mystock.entity.CcgpVO;
+import com.cyj.mystock.dao.spcz.SpczDao;
+import com.cyj.mystock.entity.Spcz;
 import com.cyj.mystock.service.ccgp.CcgpService;
-import com.cyj.mystock.thread.QueryStockThread;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cyj.mystock.dao.spcz.SpczDao;
-import com.cyj.mystock.entity.Spcz;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(transactionManager="transactionManager")
@@ -45,25 +37,12 @@ public class SpczService {
 	}
 	public void saveOrUpdate(Spcz spcz){
 		this.dao.saveOrUpdate(spcz);
-		reload();
+		ccgpService.reload();
 	}
-	private void reload(){
-		QueryStockThread thread = QueryStockThread.getInstance();
-		QueryStockThread.IsBreak=false;
-		ccgpService.init();
-		SimpleDateFormat format = new SimpleDateFormat("HHmm");
-		Date date = new Date();
-		String nowDateValue = format.format(date);
-		int now = Integer.parseInt(nowDateValue);
-		System.out.println("---------now---------"+now);
-		if(now<1510 && now>=915) {
-            QueryStockThread.IsBreak=true;
-			new Thread(thread).start();
-		}
-	}
+
 	public void delete(String id){
 		this.dao.delete(id);
-		reload();
+		ccgpService.reload();
 	}
 	public void deleteBatch(JSONArray ja){
 		for(int i=0;i<ja.size();i++){
@@ -71,7 +50,7 @@ public class SpczService {
 			JSONObject jo = JSONObject.fromObject(o);
 			this.dao.delete(jo.getString("recid"));
 		}
-		reload();
+		ccgpService.reload();
 	}
 	
 	public Spcz queryById(String id){
