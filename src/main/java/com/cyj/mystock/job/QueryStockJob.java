@@ -12,6 +12,7 @@ public class QueryStockJob {
         QueryStockThread.IsBreak=true;
         SimpleDateFormat format = new SimpleDateFormat("HHmm");
         Date date = new Date();
+
         String nowDateValue = format.format(date);
         if("1515".equals(nowDateValue)){
             QueryStockThread.IsBreak=false;

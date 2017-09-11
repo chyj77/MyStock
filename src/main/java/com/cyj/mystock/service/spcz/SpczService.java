@@ -51,12 +51,13 @@ public class SpczService {
 		QueryStockThread thread = QueryStockThread.getInstance();
 		QueryStockThread.IsBreak=false;
 		ccgpService.init();
-		QueryStockThread.IsBreak=true;
 		SimpleDateFormat format = new SimpleDateFormat("HHmm");
 		Date date = new Date();
 		String nowDateValue = format.format(date);
 		int now = Integer.parseInt(nowDateValue);
+		System.out.println("---------now---------"+now);
 		if(now<1510 && now>=915) {
+            QueryStockThread.IsBreak=true;
 			new Thread(thread).start();
 		}
 	}
