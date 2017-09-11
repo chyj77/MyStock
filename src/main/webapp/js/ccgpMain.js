@@ -112,11 +112,8 @@ function processFormat1(dom,status){
         }
     });
 }
-var ByteBuffer = window.dcodeIO.ByteBuffer;
 
-var ws;
 function initWs() {
-    ws = new WebSocket("ws://localhost:9321");
     ws.binaryType = 'arraybuffer';
     ws.onmessage = function (event) {
         console.log("----onmessage----");

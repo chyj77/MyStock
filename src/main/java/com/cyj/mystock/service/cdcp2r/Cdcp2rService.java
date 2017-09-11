@@ -49,6 +49,7 @@ public class Cdcp2rService {
 			String rq = vo.getRq();
 			String ykje= vo.getYkje();
 			String zdl= vo.getZdl();
+			zdl =zdl==null?null:zdl.replaceAll("%","");
 			Date date = sdf.parse(rq);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);

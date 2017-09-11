@@ -5,8 +5,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script type="text/javascript" src="<%=path %>/jslib/websocket/bytebuffer.js"></script>
-    <script type="text/javascript" src="<%=path %>/jslib/websocket/long.js"></script>
     <script type="text/javascript" src="<%=path %>/js/ccgpMain.js"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/modalbox.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=path %>/resources/flexigrid.pack.css"/>

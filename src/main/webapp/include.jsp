@@ -18,6 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="<%=path %>/jslib/jquery/flexigrid.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/jquery-ui.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/jquery.ui.datepicker-zh-CN.js" charset="utf-8"></script>
+    <script type="text/javascript" src="<%=path %>/jslib/websocket/bytebuffer.js"></script>
+    <script type="text/javascript" src="<%=path %>/jslib/websocket/long.js"></script>
     <!--<script type="text/javascript" src="<%=path %>/jslib/ext/options-toolbar.js"></script> -->
 
     <!-- Common Styles for the examples -->
@@ -34,8 +36,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	var basePath = "<%=basePath %>";
     	var path = "<%=path %>";
-    	var $j=jQuery.noConflict();  
-    	
+    	var $j=jQuery.noConflict();
+        var ByteBuffer = window.dcodeIO.ByteBuffer;
+        var ws = new WebSocket("ws://localhost:9321");
+//        var ws = new WebSocket("ws://47.94.93.65:9321");
     </script>
 </head>
 <body>
