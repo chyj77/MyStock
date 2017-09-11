@@ -1,6 +1,8 @@
 package com.cyj.mystock.service.spcz;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +52,13 @@ public class SpczService {
 		QueryStockThread.IsBreak=false;
 		ccgpService.init();
 		QueryStockThread.IsBreak=true;
-		new Thread(thread).start();
+		SimpleDateFormat format = new SimpleDateFormat("HHmm");
+		Date date = new Date();
+		String nowDateValue = format.format(date);
+		int now = Integer.parseInt(nowDateValue);
+		if(now<1510 && now>=915) {
+			new Thread(thread).start();
+		}
 	}
 	public void delete(String id){
 		this.dao.delete(id);
