@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.cyj.mystock.dao.HibernateDao;
 import com.cyj.mystock.entity.Ccgp;
 import com.cyj.mystock.entity.Spcz;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 @Repository
+@Transactional
 public class CcgpDao<T> extends HibernateDao<T> {
 
 	/**
@@ -63,5 +66,6 @@ public class CcgpDao<T> extends HibernateDao<T> {
 			queryString += " where "+qtype+"='"+val+"'";
 		}
 		return super.queryCount(queryString);
-	}	
+	}
+
 }

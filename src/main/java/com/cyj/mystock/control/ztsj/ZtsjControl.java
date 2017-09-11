@@ -37,7 +37,8 @@ public class ZtsjControl extends BaseControl{
 	private ZtsjService service;
 
 	@RequestMapping("/getAll")  
-    public String queryAll(HttpServletRequest request){  
+    public String queryAll(HttpServletRequest request){
+		request.getSession().setAttribute("test","test_websocket");
         return "/ztsj/main";  
     }  
 	@RequestMapping("/analytics")  
@@ -81,7 +82,7 @@ public class ZtsjControl extends BaseControl{
 	
 	/**
 	 * 
-	 * @param Cdcp2r
+	 * @param
 	 * @throws IOException 
 	 */
 	@RequestMapping("/doSave")

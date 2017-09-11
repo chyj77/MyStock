@@ -24,12 +24,6 @@ public class Ccgp {
 	private String buyprice;
 	@Column(name = "sl")
 	private String sl;
-
-	private String nowprice;
-
-	private Double jiacha;
-
-	private Double zdl;
 	@Column(name = "ccday")
 	private String ccday;
 
@@ -71,30 +65,6 @@ public class Ccgp {
 
 	public void setSl(String sl) {
 		this.sl = sl;
-	}
-
-	public String getNowprice() {
-		return nowprice;
-	}
-
-	public void setNowprice(String nowprice) {
-		this.nowprice = nowprice;
-	}
-
-	public Double getJiacha() {
-		return jiacha;
-	}
-
-	public void setJiacha(Double jiacha) {
-		this.jiacha = jiacha;
-	}
-
-	public Double getZdl() {
-		return zdl;
-	}
-
-	public void setZdl(Double zdl) {
-		this.zdl = zdl;
 	}
 
 	public String getCcday() {

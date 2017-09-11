@@ -29,6 +29,13 @@ Ext.onReady(function() {
 			children : [ {
 				text : '我的股票',
 				children : [ {
+                    id:'20',
+                    text : '持仓股票',
+                    canDropOnFirst : true,
+                    canDropOnSecond : true,
+                    html:"<iframe src="+path+"/ccgp/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
+                    leaf : true
+                } ,{
 					id:'l1',
 					text : '涨停数据',
 					canDropOnFirst : true,
@@ -116,8 +123,8 @@ Ext.onReady(function() {
 	        style: "padding:5"  
 	    },  
 	    items:[  
-	        {id:'tabl1',title:"涨停数据", tabTip:"mormal", 
-	        	html:"<iframe src="+path+"/ztsj/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
+	        {id:'tabl1',title:"持仓股票", tabTip:"mormal",
+	        	html:"<iframe src="+path+"/ccgp/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 	        	autoWidth:true,autoHeight:true,fullscreen: true }
 	    ],  
 	    enableTabScroll: true  

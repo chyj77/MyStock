@@ -77,7 +77,7 @@ public class SpczControl extends BaseControl{
 	
 	/**
 	 * 
-	 * @param Cdcp2r
+	 * @param
 	 * @throws IOException 
 	 */
 	@RequestMapping("/doSave")
@@ -98,6 +98,7 @@ public class SpczControl extends BaseControl{
 	        Object o = JsonHelper.resultJson("保存成功",true);
 	        outPrint(request,response,o);
 		}catch(Exception e){
+			e.printStackTrace();
 			Object o = JsonHelper.resultJson("保存失败",false);
 	        outPrint(request,response,o);
 		}

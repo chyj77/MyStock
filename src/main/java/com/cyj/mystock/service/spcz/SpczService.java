@@ -4,7 +4,12 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import com.cyj.mystock.entity.CcgpVO;
+import com.cyj.mystock.service.ccgp.CcgpService;
+import com.cyj.mystock.thread.QueryStockThread;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +25,8 @@ public class SpczService {
 
 	@Autowired
 	private SpczDao<?> dao;
+	@Autowired
+	CcgpService ccgpService;
 	
 	public SpczDao<?> getDao() {
 		return dao;
@@ -36,9 +43,18 @@ public class SpczService {
 	}
 	public void saveOrUpdate(Spcz spcz){
 		this.dao.saveOrUpdate(spcz);
+		reload();
+	}
+	private void reload(){
+		QueryStockThread thread = QueryStockThread.getInstance();
+		QueryStockThread.IsBreak=false;
+		ccgpService.init();
+		QueryStockThread.IsBreak=true;
+		new Thread(thread).start();
 	}
 	public void delete(String id){
 		this.dao.delete(id);
+		reload();
 	}
 	public void deleteBatch(JSONArray ja){
 		for(int i=0;i<ja.size();i++){
@@ -46,7 +62,7 @@ public class SpczService {
 			JSONObject jo = JSONObject.fromObject(o);
 			this.dao.delete(jo.getString("recid"));
 		}
-		
+		reload();
 	}
 	
 	public Spcz queryById(String id){
@@ -62,4 +78,5 @@ public class SpczService {
 	public List<Spcz> queryDetail(String code){
 		return dao.queryDetail(code);
 	}
+
 }

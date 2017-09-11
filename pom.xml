@@ -193,6 +193,14 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.t-io/tio-websocket-server -->
+		<dependency>
+			<groupId>org.t-io</groupId>
+			<artifactId>tio-websocket-server</artifactId>
+			<version>0.0.2-tio-websocket</version>
+		</dependency>
+
+
 		<!--
 		<dependency>
 			<groupId>org.opensymphony.quartz</groupId>
