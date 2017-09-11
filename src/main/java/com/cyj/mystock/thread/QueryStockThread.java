@@ -139,7 +139,7 @@ public class QueryStockThread implements Runnable {
                     System.out.println("donot see me !");
                     break;
                 }
-                Thread.sleep(1000 * 30);
+//                Thread.sleep(1000 * 30);
             }
             System.out.println(new Date() + " 关闭了查询股票行情接口!");
         } catch (Exception e) {
