@@ -128,7 +128,7 @@ public class QueryStockThread implements Runnable {
                         d_yke = (d_nowprice.subtract(d_buyprice)).multiply(d_sl).setScale(3);
                         d_zdl = (d_nowprice.subtract(d_buyprice)).divide(d_buyprice, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100)).setScale(3);
                         ccgpVO.setYke(d_yke.toString());
-                        ccgpVO.setZdl(d_zdl.toString() + "%");
+                        ccgpVO.setZdl(d_zdl.toString());
                         ccgpService.update(ccgpVO);
                         JSONObject jsonObject = JSONObject.fromObject(ccgpVO);
                         String temp = jsonObject.toString();
@@ -139,7 +139,7 @@ public class QueryStockThread implements Runnable {
                     System.out.println("donot see me !");
                     break;
                 }
-//                Thread.sleep(1000 * 30);
+                Thread.sleep(1000 * 30);
             }
             System.out.println(new Date() + " 关闭了查询股票行情接口!");
         } catch (Exception e) {

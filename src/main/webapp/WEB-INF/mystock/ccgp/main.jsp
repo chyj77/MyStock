@@ -9,13 +9,13 @@
     <script type="text/javascript" src="<%=path %>/jslib/jquery/modalbox.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=path %>/resources/flexigrid.pack.css"/>
     <link rel="stylesheet" href="<%=path %>/resources/modalbox.css" type="text/css"/>
+    <script type="text/javascript" src="<%=path%>/jslib/jquery/jquery.jqGrid.js"></script>
+    <script type="text/javascript" src="<%=path%>/jslib/jquery/grid.locale-cn.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%=path %>/resources/ui.jqgrid.css" />
     <title>持仓股票</title>
 </head>
-<body>
-<table class="flexme4" id="flexme4" style="display: none"></table>
-<script type="text/javascript">
-    onReady();
-    initWs();
-</script>
+<body onload="onReady();initWs();">
+<table id="jqGrid"></table>
+<div id="jqGridPager"></div>
 </body>
 </html>

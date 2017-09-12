@@ -124,11 +124,17 @@ Ext.onReady(function() {
 	    },  
 	    items:[  
 	        {id:'tab20',title:"持仓股票", tabTip:"mormal",
-	        	html:"<iframe src="+path+"/ccgp/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
+	        	html:"<iframe src="+path+"/ccgp/getAll.htm?p="+Math.random() +" marginheight='0'  id='iframe'   marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 	        	autoWidth:true,autoHeight:true,fullscreen: true }
 	    ],  
-	    enableTabScroll: true  
-	});  
+	    enableTabScroll: true,
+        listeners:{tabchange:function(par1,par2){
+            if(par2.id==='tab20'){
+            	Ext.get('iframe').dom.src=path+"/ccgp/getAll.htm?p="+Math.random() ;
+            }
+        }
+        }
+    });
 	
 	var win = Ext.create('widget.window', {
 		title : '我的股票',
@@ -187,8 +193,8 @@ Ext.onReady(function() {
 	                html:e.data.html,
 	                autoWidth:true,
 	                autoHeight:true,
-	                closable: true  
-	            }).show(); 
+	                closable: true
+                }).show();
         	}
         }
     }
