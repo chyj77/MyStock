@@ -9,7 +9,7 @@ import java.util.Date;
 public class QueryStockJob {
 
     public void execute() {
-        /** 旧的线程处理方式
+
         QueryStockThread thread = QueryStockThread.getInstance();
         QueryStockThread.IsBreak=true;
         SimpleDateFormat format = new SimpleDateFormat("HHmm");
@@ -20,11 +20,11 @@ public class QueryStockJob {
         }else {
             new Thread(thread).start();
         }
-         **/
 
+        /** 过时
         QueryStock2Thread thread = QueryStock2Thread.getInstance();
         thread.run();
-
+         **/
     }
 
 }
