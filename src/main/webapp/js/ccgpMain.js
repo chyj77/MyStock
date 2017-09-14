@@ -92,15 +92,14 @@ function onReady() {
         });
         $j("#jqGrid").jqGrid("navGrid", "#jqGridPager", {add: false, edit: false, del: false});
     });
-    $j("#now").html(now.Format("yyyy年MM月dd日 hh:mm:ss"));
+    $j("#now").html(new Date().Format("yyyy年MM月dd日 hh:mm:ss"));
 }
 
-var now = new Date();
 function initWs() {
     ws.binaryType = 'arraybuffer';
     ws.onmessage = function (event) {
         console.log("----onmessage----");
-        $j("#now").html(now.Format("yyyy年MM月dd日 hh:mm:ss"));
+        $j("#now").html(new Date().Format("yyyy年MM月dd日 hh:mm:ss"));
         if (event.data instanceof ArrayBuffer) {
             var arrayBuffer = event.data;
             var byteBuffer = ByteBuffer.wrap(arrayBuffer);
@@ -125,7 +124,7 @@ function initWs() {
                     // code1["yke"] = (resultText.yke);
                     // code1["zdl"] = (resultText.zdl);
                     var datarow = {code:code2,name:resultText.name,buyprice:resultText.buyprice,nowprice:resultText.nowprice,sl:resultText.sl,tax:"30.00",yke:resultText.yke,zdl:resultText.zdl};
-                    console.log(ids[i]);
+                    // console.log(ids[i]);
                     $j("#jqGrid").jqGrid('setRowData',ids[i],datarow);
                 }
                 i++;
