@@ -162,7 +162,7 @@ function minchart(par1) {
         }
         chartUrl = chartUrl.replace("$code$",code);
         var objNewDiv = $j('<div>',{'id':'div_'+code,'style':'float:left;padding: 0px;margin: 0px; width: auto'});
-        var image=$j("<image id='chart_"+code+"' src="+chartUrl+"/>");
+        var image=$j("<image id='chart_"+code+"' class='imgMinChart' src="+chartUrl+"/>");
         objNewDiv.html(image);
         console.log(objNewDiv);
         $j("#jqGridChart").append(objNewDiv);
@@ -183,5 +183,13 @@ Date.prototype.Format = function (fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-
+window.setInterval(updateChart,1000*60*2);
+function  updateChart() {
+    var imgMinCharts = $j(".imgMinChart");
+    for(var i=0;i<imgMinCharts.length;i++){
+        var imgMinChart = imgMinCharts[i];
+        var path = imgMinChart.src+"?p="+Math.random();
+        $j(imgMinChart).attr('src',path);
+    }
+}
 
