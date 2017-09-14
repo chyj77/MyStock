@@ -151,6 +151,18 @@ function send() {
 function minchart(par1) {
     var total = par1.total;
     var rows = par1.rows;
+    var shDiv = $j('<div>',{'id':'div_1A0001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
+    var shImage=$j("<image id='chart_1A0001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sh000001.gif/>");
+    shDiv.html(shImage);
+    $j("#jqGridChart").append(shDiv);
+    var szDiv = $j('<div>',{'id':'div_399001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
+    var szImage=$j("<image id='chart_399001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sz399001.gif/>");
+    szDiv.html(szImage);
+    $j("#jqGridChart").append(szDiv);
+    var cyDiv = $j('<div>',{'id':'div_399006','style':'float:left;padding: 0px;margin: 0px; width: auto'});
+    var cyImage=$j("<image id='chart_399006' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sz399006.gif/>");
+    cyDiv.html(cyImage);
+    $j("#jqGridChart").append(cyDiv);
     for(var i=0;i<total;i++){
         var chartUrl = "http://image.sinajs.cn/newchart/min/n/$code$.gif";
         var rowdata = rows[i];
