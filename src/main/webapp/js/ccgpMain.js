@@ -73,16 +73,17 @@ function onReady() {
             ],
             viewrecords: false,
             autowidth: true,
-            caption:"持仓股票",
+            caption: "持仓股票",
 //                loadonce: true,
             //autoheight: true,
             height: '100%',
             rowNum: -1,
-            loadtext:"",
+            loadui: 'disable',
 //                multiSort: true,
 //             pager: "#jqGridPager",
             footerrow: false, // set a footer row
             userDataOnFooter: false,
+            loadComplete:minchart,
             jsonReader: {
                 repeatitems: false,
                 cell: "",
@@ -91,11 +92,15 @@ function onReady() {
         });
         $j("#jqGrid").jqGrid("navGrid", "#jqGridPager", {add: false, edit: false, del: false});
     });
+    $j("#now").html(now.Format("yyyy年MM月dd日 hh:mm:ss"));
 }
+
+var now = new Date();
 function initWs() {
     ws.binaryType = 'arraybuffer';
     ws.onmessage = function (event) {
         console.log("----onmessage----");
+        $j("#now").html(now.Format("yyyy年MM月dd日 hh:mm:ss"));
         if (event.data instanceof ArrayBuffer) {
             var arrayBuffer = event.data;
             var byteBuffer = ByteBuffer.wrap(arrayBuffer);
@@ -107,18 +112,23 @@ function initWs() {
             var resultText = JSON.parse(event.data);
             var code2 = resultText.code;
             var codes = $j("#jqGrid").jqGrid('getRowData');
+            var ids = $j("#jqGrid").jqGrid('getDataIDs');
+            var i=0;
             var data = new Array();
-            console.log(codes);
+            // console.log(code2);
             codes.each(function (code1) {
                 if (code1['code'] === code2) {
-                    code1["name"]=(resultText.name);
-                    code1["buyprice"]=(resultText.buyprice);
-                    code1["nowprice"]=(resultText.nowprice);
-                    code1["sl"]=(resultText.sl);
-                    code1["yke"]=(resultText.yke);
-                    code1["zdl"]=(resultText.zdl);
-                    $j("#jqGrid").jqGrid('setGridParam',code1).trigger("reloadGrid");
+                    // code1["name"] = (resultText.name);
+                    // code1["buyprice"] = (resultText.buyprice);
+                    // code1["nowprice"] = (resultText.nowprice);
+                    // code1["sl"] = (resultText.sl);
+                    // code1["yke"] = (resultText.yke);
+                    // code1["zdl"] = (resultText.zdl);
+                    var datarow = {code:code2,name:resultText.name,buyprice:resultText.buyprice,nowprice:resultText.nowprice,sl:resultText.sl,tax:"30.00",yke:resultText.yke,zdl:resultText.zdl};
+                    console.log(ids[i]);
+                    $j("#jqGrid").jqGrid('setRowData',ids[i],datarow);
                 }
+                i++;
             });
         }
     };
@@ -139,6 +149,40 @@ function initWs() {
 function send() {
     ws.send("hello world");
 }
-
+function minchart(par1) {
+    var total = par1.total;
+    var rows = par1.rows;
+    for(var i=0;i<total;i++){
+        var chartUrl = "http://image.sinajs.cn/newchart/min/n/$code$.gif";
+        var rowdata = rows[i];
+        var code = '';
+        if (rowdata['code'].startsWith("00") || rowdata['code'].startsWith("30")) {
+            code = "sz"+rowdata['code'];
+        } else {
+            code = "sh"+rowdata['code'];
+        }
+        chartUrl = chartUrl.replace("$code$",code);
+        var objNewDiv = $j('<div>',{'id':'div_'+code,'style':'float:left;padding: 0px;margin: 0px; width: auto'});
+        var image=$j("<image id='chart_"+code+"' src="+chartUrl+"/>");
+        objNewDiv.html(image);
+        console.log(objNewDiv);
+        $j("#jqGridChart").append(objNewDiv);
+    }
+}
+Date.prototype.Format = function (fmt) { //author: meizz
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
 
 

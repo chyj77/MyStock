@@ -2,12 +2,10 @@ package com.cyj.mystock.thread;
 
 import com.cyj.mystock.BeanUtils;
 import com.cyj.mystock.cache.CcgpCache;
-import com.cyj.mystock.entity.Ccgp;
 import com.cyj.mystock.entity.CcgpVO;
 import com.cyj.mystock.service.ccgp.CcgpService;
 import com.cyj.mystock.websocket.listener.WebsocketSendListener;
 import net.sf.json.JSONObject;
-import net.sf.json.util.JSONBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Convert;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,8 +29,8 @@ import java.util.Map;
  * Created by Administrator on 2017/9/7.
  */
 @Component
-public class QueryStockThread implements Runnable {
-    private final String url = "http://hq.sinajs.cn/list=";
+public class QueryStock2Thread implements Runnable {
+    private final String URL = "http://hq.sinajs.cn/list=";
     @Autowired
     protected CcgpService ccgpService = BeanUtils.getBeanByName("ccgpService", CcgpService.class);
     @Autowired
@@ -43,11 +40,11 @@ public class QueryStockThread implements Runnable {
 
     public static boolean IsBreak = true;
 
-    private static QueryStockThread instance = new QueryStockThread();
+    private static QueryStock2Thread instance = new QueryStock2Thread();
 
-    public static QueryStockThread getInstance() {
+    public static QueryStock2Thread getInstance() {
         if (instance == null) {
-            return new QueryStockThread();
+            return new QueryStock2Thread();
         } else {
             return instance;
         }
@@ -65,12 +62,12 @@ public class QueryStockThread implements Runnable {
                 List<CcgpVO> list = ccgpService.getAll();
 //                    ccgpService.add(list);
                 for (CcgpVO gp : list) {
-                    if (gp.getCode().startsWith("00") || gp.getCode().startsWith("30")) {
+                    if (gp.getCode().trim().startsWith("00") || gp.getCode().trim().startsWith("30")) {
                         sb.append("sz");
                     } else {
                         sb.append("sh");
                     }
-                    sb.append(gp.getCode()).append(",");
+                    sb.append(gp.getCode().trim()).append(",");
                 }
             }else{
                 System.out.println(" CcgpCache is not null !");
@@ -83,10 +80,9 @@ public class QueryStockThread implements Runnable {
                     sb.append(key).append(",");
                 }
             }
-            String getUrl = url + sb.toString();
+            String getUrl = URL + sb.toString();
             Date now = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            while (IsBreak) {
                 HttpGet request = new HttpGet(getUrl);
                 RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(15000)
                         .setConnectionRequestTimeout(30000).build();
@@ -134,12 +130,6 @@ public class QueryStockThread implements Runnable {
                         String temp = jsonObject.toString();
                         sendListener.send(jsonObject.toString());
                     }
-                }
-                if (!IsBreak) {
-                    System.out.println("donot see me !");
-                    break;
-                }
-                Thread.sleep(1000*2);
             }
             System.out.println(new Date() + " 关闭了查询股票行情接口!");
         } catch (Exception e) {

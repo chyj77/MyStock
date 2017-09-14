@@ -199,6 +199,25 @@
 			<artifactId>tio-websocket-server</artifactId>
 			<version>0.0.2-tio-websocket</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.t-io/tio-http-server -->
+		<dependency>
+			<groupId>org.t-io</groupId>
+			<artifactId>tio-http-server</artifactId>
+			<version>0.0.2-tio-http</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.5.6.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 
 
 		<!--

@@ -197,13 +197,13 @@ public class CcgpService {
                     jsonObject.put("zdl", ccgp.getZdl());
                     byte[] value = serializer.serialize(jsonObject.toString());
                     connection.set(key, value);
-                    System.out.println("update Redis sussess ");
+//                    System.out.println("update Redis sussess ");
                     return true;
                 }
             });
         } catch (RedisConnectionFailureException e) {
 //			System.out.println(e.toString());
-            System.out.println("update cache sussess ");
+//            System.out.println("update cache sussess ");
             CcgpCache.set(key, ccgp);
             result = true;
         }
@@ -321,9 +321,9 @@ public class CcgpService {
         String nowDateValue = format.format(date);
         int now = Integer.parseInt(nowDateValue);
         System.out.println("---------now---------"+now);
-        if(now<1510 && now>=915) {
+//        if(now<1510 && now>=915) {
             QueryStockThread.IsBreak=true;
             new Thread(thread).start();
-        }
+//        }
     }
 }

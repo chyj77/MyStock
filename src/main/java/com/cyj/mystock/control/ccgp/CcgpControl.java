@@ -43,17 +43,15 @@ public class CcgpControl extends BaseControl{
 	@Autowired
 	private CcgpService service;
 
-	@RequestMapping("/getAll")  
-    public String queryAll(HttpServletRequest request){  
+	@RequestMapping("/getAll")
+    public String queryAll(HttpServletRequest request){
         return "/ccgp/main";
     }  
 	
-	@RequestMapping("/getAllAjax") 
+	@RequestMapping("/getAllAjax")
 	public void queryAllAjax(HttpServletRequest request,HttpServletResponse response) throws IOException{
     	List list =	service.getAll();
 		Object o = JsonHelper.flexigridJson(list,list.size());
 		outPrint(request,response,o);
 	}
-	
-
 }

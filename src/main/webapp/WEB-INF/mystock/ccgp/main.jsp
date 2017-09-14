@@ -15,7 +15,9 @@
     <title>持仓股票</title>
 </head>
 <body onload="onReady();initWs();">
+<div><span id="now" style="color: #0066ff;"></span></div>
 <table id="jqGrid"></table>
 <div id="jqGridPager"></div>
+<div id="jqGridChart" style="float:left;padding-top:15px;padding-left:0px;margin: 0px; width: auto;position: relative; overflow: hidden;"></div>
 </body>
 </html>
