@@ -151,8 +151,8 @@ function send() {
 function minchart(par1) {
     var total = par1.total;
     var rows = par1.rows;
-    var shDiv = $j('<div>',{'id':'div_1A0001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
-    var shImage=$j("<image id='chart_1A0001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sh000001.gif/>");
+    var shDiv = $j('<div>',{'id':'div_000001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
+    var shImage=$j("<image id='chart_000001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sh000001.gif/>");
     shDiv.html(shImage);
     $j("#jqGridChart").append(shDiv);
     var szDiv = $j('<div>',{'id':'div_399001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
