@@ -2,12 +2,10 @@ package com.cyj.mystock.thread;
 
 import com.cyj.mystock.BeanUtils;
 import com.cyj.mystock.cache.CcgpCache;
-import com.cyj.mystock.entity.Ccgp;
 import com.cyj.mystock.entity.CcgpVO;
 import com.cyj.mystock.service.ccgp.CcgpService;
 import com.cyj.mystock.websocket.listener.WebsocketSendListener;
 import net.sf.json.JSONObject;
-import net.sf.json.util.JSONBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -19,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Convert;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -126,7 +124,7 @@ public class QueryStockThread implements Runnable {
                             d_buyprice = new BigDecimal(buyprice);
                         }
                         d_yke = (d_nowprice.subtract(d_buyprice)).multiply(d_sl).setScale(3);
-                        d_zdl = (d_nowprice.subtract(d_buyprice)).divide(d_buyprice, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100)).setScale(3);
+                        d_zdl = (d_nowprice.subtract(d_buyprice)).divide(d_buyprice,3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)).setScale(3);
                         ccgpVO.setYke(d_yke.toString());
                         ccgpVO.setZdl(d_zdl.toString());
                         ccgpService.update(ccgpVO);

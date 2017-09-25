@@ -13,8 +13,8 @@ Ext.onReady(function() {
 		id:'treeMenu',
 		model : 'Item',
 		title:'导航',
-		width : 300,
-		height : 800,
+		width : '100%',
+		height : '100%',
 		frame: true,
         autoScroll: true,
         enableDD: false,
@@ -114,13 +114,13 @@ Ext.onReady(function() {
 	    activeTab: 0,  
 	    maximizable : false,
 //	    width:1000,
-	    height:900,
+	    height:'100%',
 	    frame:true,  	   
 	    tabPosition: 'top',
 	    defaults: {  
 	        autoScroll: true,  
 	        autoHeight:true,  
-	        style: "padding:5"  
+	        style: "padding:0px"
 	    },  
 	    items:[  
 	        {id:'tab20',title:"持仓股票", tabTip:"mormal",

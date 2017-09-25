@@ -1,10 +1,8 @@
 package com.cyj.mystock.service.ccgp;
 
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import com.cyj.mystock.cache.CcgpCache;
+import com.cyj.mystock.dao.ccgp.CcgpDao;
+import com.cyj.mystock.entity.Ccgp;
 import com.cyj.mystock.entity.CcgpVO;
 import com.cyj.mystock.thread.QueryStockThread;
 import net.sf.json.JSONObject;
@@ -17,9 +15,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
-import com.cyj.mystock.dao.ccgp.CcgpDao;
-import com.cyj.mystock.entity.Ccgp;
-import org.springframework.util.Assert;
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class CcgpService {
@@ -173,6 +171,7 @@ public class CcgpService {
      * @param ccgp
      * @return
      */
+
     public boolean update(final CcgpVO ccgp) {
         String key = ccgp.getCode();
         if (get(key) == null) {
