@@ -14,6 +14,10 @@ if (Object.isUndefined(Prototype.Browser.IE6)) {
 if (!window.Modalbox)
 	var Modalbox = {};
 
+Modalbox.init=function (injectToEl) {
+	this._injectToEl=injectToEl;
+}
+
 Modalbox.Methods = {
 	overrideAlert: false, // Override standard browser alert message with ModalBox
 	focusableElements: [],
@@ -76,9 +80,9 @@ Modalbox.Methods = {
 
 		// Inserting into DOM. If parameter set and form element have been found will inject into it. Otherwise will inject into body as topmost element.
 		// Be sure to set padding and marging to null via CSS for both body and (in case of asp.net) form elements.
-		var injectToEl = this.options.aspnet ? $(document.body).down('form') : $(document.body);
-		injectToEl.insert({'top':this.MBwindowwrapper});
-		injectToEl.insert({'top':this.MBoverlay});
+		//var injectToEl = this.options.aspnet ? $(document.body).down('form') : $(document.body);
+        this._injectToEl.insert({'top':this.MBwindowwrapper});
+        this._injectToEl.insert({'top':this.MBoverlay});
 
 		var scrollOffsets = document.viewport.getScrollOffsets();
 		if (scrollOffsets[1] > 0) {

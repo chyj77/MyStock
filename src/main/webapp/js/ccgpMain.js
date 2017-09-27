@@ -1,4 +1,14 @@
-function onReady() {
+SPA_RESOLVE_INIT = function(transition) {
+    var firstSpan = $j('<span>',{'id':'now','style':'color: #0066ff;'});
+
+    var jqGrid = $j('<table>',{'id':'jqGrid','style':'float:left;padding-top:0px;padding-left:0px;margin: 0px; width: auto;position: relative; overflow: hidden;'});
+    var jqGridPager = $j('<div>',{'id':'jqGridPager','style':'float:left;padding-top:10px;padding-left:0px;margin: 0px; width: auto;position: relative; overflow: hidden;'});
+    var jqGridChart = $j('<div>',{'id':'jqGridChart','style':'float:left;padding-top:15px;padding-left:0px;margin: 0px; width: auto;position: relative; overflow: hidden;'});
+    $j('#tab20-innerCt').append(firstSpan);
+    $j('#tab20-innerCt').append(jqGrid);
+    $j('#tab20-innerCt').append(jqGridPager);
+    $j('#tab20-innerCt').append(jqGridChart);
+
     $j(document).ready(function () {
         $j("#jqGrid").jqGrid({
             url: path + "/ccgp/getAllAjax.htm",
@@ -73,7 +83,6 @@ function onReady() {
             ],
             viewrecords: false,
             autowidth: true,
-            caption: "持仓股票",
 //                loadonce: true,
             //autoheight: true,
             height: '100%',

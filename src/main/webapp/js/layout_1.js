@@ -1,7 +1,6 @@
-Ext.require([ 'Ext.tab.*', 'Ext.window.*', 'Ext.tip.*', 'Ext.tree.*','Ext.Msg.*','Ext.example.*',
+Ext.require([ 'Ext.tab.*', 'Ext.window.*', 'Ext.tip.*', 'Ext.tree.*',
 		'Ext.data.*', 'Ext.layout.container.HBox', 'Ext.window.MessageBox',
 		'Ext.layout.container.Border' ]);
-
 
 Ext.define('Item', {
     extend: 'Ext.data.Model',
@@ -34,35 +33,34 @@ Ext.onReady(function() {
                     text : '持仓股票',
                     canDropOnFirst : true,
                     canDropOnSecond : true,
-                    myhref:"#/ccgp/getAllAjax.htm" ,
                     leaf : true
                 } ,{
 					id:'l1',
 					text : '涨停数据',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/ztsj/getAllAjax.htm" ,
+                    html:"<iframe src="+path+"/ztsj/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 					leaf : true
 				}, {
 					id:'l2',
 					text : '2日试盘',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/cdcp2r/getAllAjax.htm" ,
+					html:"<iframe src="+path+"/cdcp2r/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 					leaf : true
 				} , {
 					id:'l3',
 					text : '实盘操作',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/spcz/getAllAjax.htm",
+					html:"<iframe src="+path+"/spcz/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 					leaf : true
 				} , {
 					id:'l4',
 					text : '广发股票流水',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/gfStock/getAllAjax.htm" ,
+					html:"<iframe src="+path+"/gfStock/getAll.htm marginheight='0' marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
 					leaf : true
 				}  ],
 				expanded : true
@@ -73,35 +71,35 @@ Ext.onReady(function() {
 					text : '2日试盘统计分析',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/cdcp2r/getWeekAnay.htm",
+					html:"<iframe src="+path+"/cdcp2r/getWeek.htm marginheight='0' marginwidth='0' width='100%' height='100%' scrolling='auto'  frameborder='0'></iframe>",
 					leaf : true
 				}, {
 					id:'l6',
 					text : '涨停数据分析',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/ztsj/analytics.htm",
+					html:"<iframe src="+path+"/ztsj/analytics.htm id='ztsjfxfrm' marginheight='0' marginwidth='0' width='100%' height='100%' scrolling='auto'  frameborder='0'></iframe>",
 					leaf : true
 				} , {
 					id:'l7',
 					text : '实盘股票分析',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/spcz/getStat.htm",
+					html:"<iframe src="+path+"/spcz/getStat.htm  marginheight='0' marginwidth='0' width='100%' height='100%' scrolling='auto'  frameborder='0'></iframe>",
 					leaf : true
 				} , {
 					id:'l8',
 					text : '广发流水统计分析',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/gfStock/getGfstock.htm" ,
+					html:"<iframe src="+path+"/gfStock/getGfstock.htm  marginheight='0' marginwidth='0' width='100%' height='100%' scrolling='auto'  frameborder='0'></iframe>",
 					leaf : true
 				} , {
 					id:'l9',
 					text : '上海龙虎榜数据',
 					canDropOnFirst : true,
 					canDropOnSecond : true,
-                    myhref:"#/shlhb/getAll.htm" ,
+					html:"<iframe src="+path+"/shlhb/getAll.htm  marginheight='0' marginwidth='0' width='100%' height='100%' scrolling='auto'  frameborder='0'></iframe>",
 					leaf : true
 				}],
 				expanded : false
@@ -116,7 +114,7 @@ Ext.onReady(function() {
 	    activeTab: 0,  
 	    maximizable : false,
 //	    width:1000,
-	    height:1000,
+	    height:'100%',
 	    frame:true,  	   
 	    tabPosition: 'top',
 	    defaults: {  
@@ -126,14 +124,15 @@ Ext.onReady(function() {
 	    },  
 	    items:[  
 	        {id:'tab20',title:"持仓股票", tabTip:"mormal",
-	        	myhref:"#/ccgp/getAllAjax.htm" ,
-	        	autoWidth:true, autoHeight:true,fullscreen: true }
+	        	html:"<iframe src="+path+"/ccgp/getAll.htm?p="+Math.random() +" marginheight='0'  id='iframe'   marginwidth='0'width='100%' height='1000'  frameborder='0'></iframe>",
+	        	autoWidth:true,autoHeight:true,fullscreen: true }
 	    ],  
 	    enableTabScroll: true,
-        listeners: {
-            'tabchange': function (tab1, tab2,tab3) {
-                location.hash= tab2.myhref+"?p="+Math.random();
+        listeners:{tabchange:function(par1,par2){
+            if(par2.id==='tab20'){
+            	Ext.get('iframe').dom.src=path+"/ccgp/getAll.htm?p="+Math.random() ;
             }
+        }
         }
     });
 	
@@ -190,15 +189,14 @@ Ext.onReady(function() {
 	        	tabs.add({  
 	                id: "tab" + e.id,  
 	                fullscreen: true,
-	                title:e.data.text ,
-                    myhref:e.data.myhref,
+	                title:e.data.text ,  
+	                html:e.data.html,
 	                autoWidth:true,
 	                autoHeight:true,
 	                closable: true
                 }).show();
-                // location.hash=e.data.myhref+"?p="+Math.random() ;
         	}
         }
     }
-
+    
 });

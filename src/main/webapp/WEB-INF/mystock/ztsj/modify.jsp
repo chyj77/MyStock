@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="/include.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/flexigrid.pack.css" />
-<script type="text/javascript" src="<%=path %>/js/ztsjMain.js"></script>
-<link rel="stylesheet" href="<%=path %>/resources/jquery-ui.css" type="text/css" />
-<link rel="stylesheet" href="<%=path %>/resources/jquery-ui.theme.css" type="text/css" />
 <title>涨停数据编辑</title>
 </head>
 <body>

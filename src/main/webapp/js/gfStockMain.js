@@ -1,5 +1,8 @@
-function onReady(){
-	$j(".flexme4").flexigrid({
+SPA_RESOLVE_INIT = function(transition) {
+    var flexme6 = $j('<table>',{'id':'flexme6','style':'display: none;','class':'flexme4'});
+    $j('#tabl4-innerCt').append(flexme6);
+
+	$j("#flexme6").flexigrid({
                 url : path+"/gfStock/getAllAjax.htm",
                 dataType : 'json',
                 colModel : [ {

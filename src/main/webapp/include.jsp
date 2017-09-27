@@ -11,21 +11,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
  <!-- GC -->
     <script type="text/javascript" src="<%=path %>/jslib/prototype/prototype.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<%=path %>/jslib/prototype//scriptaculous.js?load=effects" charset="utf-8"></script>
+    <script type="text/javascript" src="<%=path %>/jslib/prototype/scriptaculous.js?load=effects" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/ext/include-ext.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/ext/examples.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/jquery-3.1.1.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/flexigrid.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/jquery-ui.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=path %>/jslib/jquery/jquery.ui.datepicker-zh-CN.js" charset="utf-8"></script>
+    <script type="text/javascript" src="<%=path%>/jslib/jquery/jquery.jqGrid.js"></script>
+    <script type="text/javascript" src="<%=path%>/jslib/jquery/grid.locale-cn.js"></script>
+    <script type="text/javascript" src="<%=path %>/jslib/jquery/modalbox.js"></script>
     <script type="text/javascript" src="<%=path %>/jslib/websocket/bytebuffer.js"></script>
     <script type="text/javascript" src="<%=path %>/jslib/websocket/long.js"></script>
     <!--<script type="text/javascript" src="<%=path %>/jslib/ext/options-toolbar.js"></script> -->
-
     <!-- Common Styles for the examples -->
+    <link rel="stylesheet" href="<%=path %>/resources/modalbox.css" type="text/css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="<%=path %>/resources/example.css"/>
     <link rel="stylesheet" type="text/css" href="<%=path %>/resources/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="<%=path %>/resources/jquery-ui.theme.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path %>/resources/flexigrid.pack.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%=path %>/resources/ui.jqgrid.css" />
 
     <style type="text/css">
         .x-panel-body p {

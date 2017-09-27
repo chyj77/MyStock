@@ -1,6 +1,8 @@
 Ext.require([ 'Ext.Msg.*','Ext.example.*']);
-function onReady(){
-	$j(".flexme4").flexigrid({
+SPA_RESOLVE_INIT = function(transition) {
+    var flexme5 = $j('<table>',{'id':'flexme5','style':'display: none;','class':'flexme4'});
+    $j('#tabl3-innerCt').append(flexme5);
+	$j("#flexme5").flexigrid({
                 url : path+"/spcz/getAllAjax.htm",
                 dataType : 'json',
                 colModel : [ {
@@ -56,19 +58,19 @@ function onReady(){
                 buttons : [ {
                     name : '新增',
                     bclass : 'add',
-                    onpress : Example4
+                    onpress : Example5
                     }
                     ,
                     {
                         name : '编辑',
                         bclass : 'edit',
-                        onpress : Example4
+                        onpress : Example5
                     }
                     ,
                     {
                         name : '删除',
                         bclass : 'delete',
-                        onpress : Example4
+                        onpress : Example5
                     }
                     ,
                     {
@@ -100,7 +102,7 @@ function onReady(){
                 height : 700
             });
 }
-            function Example4(com, grid) {
+            function Example5(com, grid) {
                 if (com == '删除') {
                     var conf = confirm('确认删除 ' + $j('.trSelected', grid).length + ' 条记录?')
                     if(conf){
@@ -139,6 +141,7 @@ function onReady(){
 //                                var PrimaryLanguage = prompt("Please enter the Employee's Primary Language",value.children[2].innerText);
 //                                var FavoriteColor = prompt("Please enter the Employee's Favorite Color",value.children[3].innerText);
 //                                var FavoriteAnimal = prompt("Please enter the Employee's Favorite Animal",value.children[4].innerText);
+                                Modalbox.init($('tabl3-innerCt'));
                         	Modalbox.show(path+"/spcz/modify.htm", 
                         			{title: "实盘操作编辑", 
                         			height: 300,
@@ -179,6 +182,7 @@ function onReady(){
                     }
                 }
                 else if (com == '新增') {
+                    Modalbox.init($('tabl3-innerCt'));
                 	Modalbox.show(path+"/spcz/modify.htm", 
                 			{title: "实盘操作编辑", 
                 			height: 300,
@@ -225,6 +229,6 @@ function doSave(){
 		Ext.example.msg("提示",resultText.message);
 		Modalbox.hide();
 		$j("#ui-datepicker-div")["0"].style.display='none';
-      $j(".flexme4").flexReload();
+      $j(".flexme5").flexReload();
 });
 }

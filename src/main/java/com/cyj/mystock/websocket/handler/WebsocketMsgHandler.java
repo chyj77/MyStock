@@ -24,11 +24,11 @@ public class WebsocketMsgHandler implements IWsMsgHandler {
 
     @Override
     public HttpResponse handshake(HttpRequest request, HttpResponse httpResponse, ChannelContext channelContext) throws Exception {
-        try {
-            Object obj = request.getHttpSession().getAttribute("test");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try {
+//            Object obj = request.getHttpSession().getAttribute("test");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
         ClientCache.set("client",channelContext);
         return httpResponse;
     }
