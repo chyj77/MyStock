@@ -1,4 +1,4 @@
-Ext.require([ 'Ext.tab.*', 'Ext.window.*', 'Ext.tip.*', 'Ext.tree.*','Ext.Msg.*','Ext.example.*',
+﻿Ext.require([ 'Ext.tab.*', 'Ext.window.*', 'Ext.tip.*', 'Ext.tree.*','Ext.Msg.*','Ext.example.*',
 		'Ext.data.*', 'Ext.layout.container.HBox', 'Ext.window.MessageBox',
 		'Ext.layout.container.Border' ]);
 
@@ -112,22 +112,21 @@ Ext.onReady(function() {
 	var mainTab = Ext.create('Ext.TabPanel', {
 	    fullscreen: true,
 	    id: "mainTab",  
-//	    renderTo:Ext.getBody(),
-	    activeTab: 0,  
-	    maximizable : false,
+	    renderTo:Ext.getBody(),
+	    activeTab:0,  
+	    maximizable:true,
 //	    width:1000,
-	    height:1000,
+height:1500,
 	    frame:true,  	   
 	    tabPosition: 'top',
 	    defaults: {  
 	        autoScroll: true,  
-	        autoHeight:true,  
 	        style: "padding:0px"
 	    },  
 	    items:[  
 	        {id:'tab20',title:"持仓股票", tabTip:"mormal",
 	        	myhref:"#/ccgp/getAllAjax.htm" ,
-	        	autoWidth:true, autoHeight:true,fullscreen: true }
+	        	autoWidth:true,autoScroll:true, fullscreen: true }
 	    ],  
 	    enableTabScroll: true,
         listeners: {
@@ -150,7 +149,7 @@ Ext.onReady(function() {
 		// animateTarget: button,
 		width : 800,
 		minWidth : 350,
-		height : 400,
+		height : 2000,
 		tools : [ {
 			type : 'pin'
 		} ],
@@ -173,6 +172,7 @@ Ext.onReady(function() {
 			items:[treeMenu]
 		}, {
 			region: 'center',
+autoScroll:true,
          //   xtype: 'tabpanel',
 			items :[mainTab]
 			
@@ -193,7 +193,7 @@ Ext.onReady(function() {
 	                title:e.data.text ,
                     myhref:e.data.myhref,
 	                autoWidth:true,
-	                autoHeight:true,
+			autoScroll:true,
 	                closable: true
                 }).show();
                 // location.hash=e.data.myhref+"?p="+Math.random() ;

@@ -1,4 +1,4 @@
-SPA_RESOLVE_INIT = function(transition) {
+﻿SPA_RESOLVE_INIT = function(transition) {
     var firstSpan = $j('<span>',{'id':'now','style':'color: #0066ff;'});
 
     var jqGrid = $j('<table>',{'id':'jqGrid','style':'float:left;padding-top:0px;padding-left:0px;margin: 0px; width: auto;position: relative; overflow: hidden;'});
@@ -18,25 +18,25 @@ SPA_RESOLVE_INIT = function(transition) {
                 {
                     label: '日期',
                     name: 'rq',
-                    width: 150,
+                    width: 100,
                     align: "center"
                 },
                 {
                     label: '股票代码',
                     name: 'code',
-                    width: 150,
+                    width: 100,
                     align: "center"
                 },
                 {
-                    label: '股票名称', name: 'name', width: 150,
+                    label: '股票名称', name: 'name', width: 100,
                     align: "center"
                 },
                 {
-                    label: '持仓价', name: 'buyprice', width: 150,
+                    label: '持仓价', name: 'buyprice', width: 100,
                     align: "center"
                 },
                 {
-                    label: '最新价', name: 'nowprice', width: 150,
+                    label: '最新价', name: 'nowprice', width: 100,
                     align: "center",
                     formatter: function (value, options, rData) {
                         var reValue;
@@ -49,13 +49,13 @@ SPA_RESOLVE_INIT = function(transition) {
                     }
                 },
                 {
-                    label: '持仓数量', name: 'sl', width: 150,
+                    label: '持仓数量', name: 'sl', width: 100,
                     align: "center"
                 },
                 {
                     label: '盈亏金额',
                     name: 'yke',
-                    width: 150,
+                    width: 100,
                     align: "center",
                     formatter: function (value, options, rData) {
                         var reValue;
@@ -68,7 +68,7 @@ SPA_RESOLVE_INIT = function(transition) {
                     }
                 },
                 {
-                    label: '涨跌幅', name: 'zdl', width: 150,
+                    label: '涨跌幅', name: 'zdl', width: 100,
                     align: "center",
                     formatter: function (value, options, rData) {
                         var reValue;
@@ -82,7 +82,7 @@ SPA_RESOLVE_INIT = function(transition) {
                 }
             ],
             viewrecords: false,
-            autowidth: true,
+            width: 1580,
 //                loadonce: true,
             //autoheight: true,
             height: '100%',
@@ -103,7 +103,7 @@ SPA_RESOLVE_INIT = function(transition) {
     });
     $j("#now").html(new Date().Format("yyyy年MM月dd日 hh:mm:ss"));
 }
-
+initWs();
 function initWs() {
     ws.binaryType = 'arraybuffer';
     ws.onmessage = function (event) {
