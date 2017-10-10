@@ -18,25 +18,25 @@
                 {
                     label: '日期',
                     name: 'rq',
-                    width: 100,
+                    width: 80,
                     align: "center"
                 },
                 {
                     label: '股票代码',
                     name: 'code',
-                    width: 100,
+                    width: 80,
                     align: "center"
                 },
                 {
-                    label: '股票名称', name: 'name', width: 100,
+                    label: '股票名称', name: 'name', width: 80,
                     align: "center"
                 },
                 {
-                    label: '持仓价', name: 'buyprice', width: 100,
+                    label: '持仓价', name: 'buyprice', width: 80,
                     align: "center"
                 },
                 {
-                    label: '最新价', name: 'nowprice', width: 100,
+                    label: '最新价', name: 'nowprice', width: 80,
                     align: "center",
                     formatter: function (value, options, rData) {
                         var reValue;
@@ -49,13 +49,13 @@
                     }
                 },
                 {
-                    label: '持仓数量', name: 'sl', width: 100,
+                    label: '持仓数量', name: 'sl', width: 80,
                     align: "center"
                 },
                 {
                     label: '盈亏金额',
                     name: 'yke',
-                    width: 100,
+                    width: 80,
                     align: "center",
                     formatter: function (value, options, rData) {
                         var reValue;
@@ -68,7 +68,7 @@
                     }
                 },
                 {
-                    label: '涨跌幅', name: 'zdl', width: 100,
+                    label: '涨跌幅', name: 'zdl', width: 80,
                     align: "center",
                     formatter: function (value, options, rData) {
                         var reValue;
@@ -79,6 +79,10 @@
                         }
                         return reValue;
                     }
+                },
+                {
+                    label: '持仓天数', name: 'ccday', width: 80,
+                    align: "center"
                 }
             ],
             viewrecords: false,
