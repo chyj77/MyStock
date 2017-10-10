@@ -13,7 +13,7 @@
 </head>
 <body>
 <script type="text/javascript">
-    $j("#datepicker").datepicker({//添加日期选择功能  
+    $j("#datepicker2").datepicker({//添加日期选择功能
     numberOfMonths:1,//显示几个月  
     showButtonPanel:true,//是否显示按钮面板  
     dateFormat: 'yy-mm-dd',//日期格式  
@@ -32,7 +32,7 @@
         
     }  
     });  
-    $j("#datepicker").datepicker('setDate', new Date());
+    $j("#datepicker2").datepicker('setDate', new Date());
     
 </script>
 <div class="flexigrid" style="width:'100%';" id="ztsj">  
@@ -41,7 +41,7 @@
                     cellpadding="0" cellspacing="0">  
                     <tr>  
                         <td>日期：</td>  
-                        <td><input type="text" id="datepicker" name="rq" readonly="readonly"></td>  
+                        <td><input type="text" id="datepicker2" name="rq" readonly="readonly"></td>
                         <td><input type="hidden" name="recid"></td>
                         <td>&nbsp;</td>
                     </tr>  

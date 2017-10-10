@@ -8,10 +8,10 @@
 </head>
 <body>
 <script type="text/javascript">
-    $j("#datepicker").datepicker({//添加日期选择功能  
+    $j("#datepicker1").datepicker({//添加日期选择功能
     numberOfMonths:1,//显示几个月  
     showButtonPanel:true,//是否显示按钮面板  
-    dateFormat: 'yy-mm-dd',//日期格式  
+    dateFormat: 'yy-mm-dd',//日期格式
     clearText:"清除",//清除日期的按钮名称  
     closeText:"关闭",//关闭选择框的按钮名称  
     yearSuffix: '年', //年的后缀  
@@ -27,7 +27,7 @@
         
     }  
     });  
-    $j("#datepicker").datepicker('setDate', new Date());
+    $j("#datepicker1").datepicker('setDate', new Date());
     
 </script>
 <div class="flexigrid" style="width:'100%';" id="ztsj">  
@@ -36,7 +36,7 @@
                     cellpadding="0" cellspacing="0">  
                     <tr>  
                         <td>日期：</td>  
-                        <td><input type="text" id="datepicker" name="rq" readonly="readonly"></td>  
+                        <td><input type="text" id="datepicker1" name="rq"></td>
                         <td><input type="hidden" name="recid"></td>
                         <td>&nbsp;</td>
                     </tr>  
