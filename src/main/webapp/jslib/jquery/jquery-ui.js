@@ -9615,7 +9615,7 @@ function datepicker_getZindex( elem ) {
 			// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
 			value = parseInt( elem.css( "zIndex" ), 10 );
 			if ( !isNaN( value ) && value !== 0 ) {
-				return value;
+				return value*10;
 			}
 		}
 		elem = elem.parent();
@@ -11904,7 +11904,6 @@ $j.widget( "ui.dialog", {
 				return +$j( this ).css( "z-index" );
 			} ).get(),
 			zIndexMax = Math.max.apply( null, zIndices );
-
 		if ( zIndexMax >= +this.uiDialog.css( "z-index" ) ) {
 			this.uiDialog.css( "z-index", zIndexMax + 1 );
 			moved = true;
