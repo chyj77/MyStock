@@ -154,7 +154,7 @@ SPA_RESOLVE_INIT = function(transition) {
                         				  , function(result){
                         				      // when ajax returns (callback), update the grid to refresh the data
                         						var resultText = JSON.parse(result);
-                        						$j("#datepicker").val(resultText.rq);
+                        						$j("#datepicker2").val(resultText.rq);
                         						$j('[name="code"]').val(resultText.code);
                         						$j('[name="name"]').val(resultText.name);
                         						//$j('[name="caozuo"]').val(resultText.caozuo);
@@ -209,7 +209,7 @@ function doSave(){
 	var jg = $j('[name="jiage"]').val();
 	var sl = $j('[name="sl"]').val();
 	var spcz ={};
-	spcz.rq = $j("#datepicker").val();
+	spcz.rq = $j("#datepicker2").val();
 	spcz.code = $j('[name="code"]').val();
 	spcz.name = $j('[name="name"]').val();
 	spcz.caozuo = cz;//$j('[name="caozuo"]').val();

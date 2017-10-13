@@ -162,35 +162,40 @@ function send() {
     ws.send("hello world");
 }
 function minchart(par1) {
-    var total = par1.total;
-    var rows = par1.rows;
-    var shDiv = $j('<div>',{'id':'div_000001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
-    var shImage=$j("<image id='chart_000001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sh000001.gif/>");
-    shDiv.html(shImage);
-    $j("#jqGridChart").append(shDiv);
-    var szDiv = $j('<div>',{'id':'div_399001','style':'float:left;padding: 0px;margin: 0px; width: auto'});
-    var szImage=$j("<image id='chart_399001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sz399001.gif/>");
-    szDiv.html(szImage);
-    $j("#jqGridChart").append(szDiv);
-    var cyDiv = $j('<div>',{'id':'div_399006','style':'float:left;padding: 0px;margin: 0px; width: auto'});
-    var cyImage=$j("<image id='chart_399006' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sz399006.gif/>");
-    cyDiv.html(cyImage);
-    $j("#jqGridChart").append(cyDiv);
-    for(var i=0;i<total;i++){
-        var chartUrl = "http://image.sinajs.cn/newchart/min/n/$code$.gif";
-        var rowdata = rows[i];
-        var code = '';
-        if (rowdata['code'].startsWith("00") || rowdata['code'].startsWith("30")) {
-            code = "sz"+rowdata['code'];
-        } else {
-            code = "sh"+rowdata['code'];
+    if($j("#div_000001").length == 0) {
+        var total = par1.total;
+        var rows = par1.rows;
+        var shDiv = $j('<div>', {'id': 'div_000001', 'style': 'float:left;padding: 0px;margin: 0px; width: auto'});
+        var shImage = $j("<image id='chart_000001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sh000001.gif/>");
+        shDiv.html(shImage);
+        $j("#jqGridChart").append(shDiv);
+        var szDiv = $j('<div>', {'id': 'div_399001', 'style': 'float:left;padding: 0px;margin: 0px; width: auto'});
+        var szImage = $j("<image id='chart_399001' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sz399001.gif/>");
+        szDiv.html(szImage);
+        $j("#jqGridChart").append(szDiv);
+        var cyDiv = $j('<div>', {'id': 'div_399006', 'style': 'float:left;padding: 0px;margin: 0px; width: auto'});
+        var cyImage = $j("<image id='chart_399006' class='imgMinChart' src=http://image.sinajs.cn/newchart/min/n/sz399006.gif/>");
+        cyDiv.html(cyImage);
+        $j("#jqGridChart").append(cyDiv);
+        for (var i = 0; i < total; i++) {
+            var chartUrl = "http://image.sinajs.cn/newchart/min/n/$code$.gif";
+            var rowdata = rows[i];
+            var code = '';
+            if (rowdata['code'].startsWith("00") || rowdata['code'].startsWith("30")) {
+                code = "sz" + rowdata['code'];
+            } else {
+                code = "sh" + rowdata['code'];
+            }
+            chartUrl = chartUrl.replace("$code$", code);
+            var objNewDiv = $j('<div>', {
+                'id': 'div_' + code,
+                'style': 'float:left;padding: 0px;margin: 0px; width: auto'
+            });
+            var image = $j("<image id='chart_" + code + "' class='imgMinChart' src=" + chartUrl + "/>");
+            objNewDiv.html(image);
+            console.log(objNewDiv);
+            $j("#jqGridChart").append(objNewDiv);
         }
-        chartUrl = chartUrl.replace("$code$",code);
-        var objNewDiv = $j('<div>',{'id':'div_'+code,'style':'float:left;padding: 0px;margin: 0px; width: auto'});
-        var image=$j("<image id='chart_"+code+"' class='imgMinChart' src="+chartUrl+"/>");
-        objNewDiv.html(image);
-        console.log(objNewDiv);
-        $j("#jqGridChart").append(objNewDiv);
     }
 }
 Date.prototype.Format = function (fmt) { //author: meizz
