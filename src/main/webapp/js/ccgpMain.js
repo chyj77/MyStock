@@ -162,6 +162,21 @@ function send() {
     ws.send("hello world");
 }
 function minchart(par1) {
+    $j("#div_000001").remove();
+    $j("#div_399001").remove();
+    $j("#div_399006").remove();
+    for (var i = 0; i < total; i++) {
+        var rowdata = rows[i];
+        var code = '';
+        if (rowdata['code'].startsWith("00") || rowdata['code'].startsWith("30")) {
+            code = "sz" + rowdata['code'];
+        } else {
+            code = "sh" + rowdata['code'];
+        }
+        if($j("#div_"+code).length > 0){
+            $j("#div_"+code).remove();
+        }
+    }
     if($j("#div_000001").length == 0) {
         var total = par1.total;
         var rows = par1.rows;
