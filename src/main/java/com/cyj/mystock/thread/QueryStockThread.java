@@ -3,8 +3,8 @@ package com.cyj.mystock.thread;
 import com.cyj.mystock.BeanUtils;
 import com.cyj.mystock.cache.CcgpCache;
 import com.cyj.mystock.entity.CcgpVO;
+import com.cyj.mystock.jettywebsocket.AdapterEchoSocket;
 import com.cyj.mystock.service.ccgp.CcgpService;
-import com.cyj.mystock.websocket.listener.WebsocketSendListener;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.config.RequestConfig;
@@ -37,7 +37,17 @@ public class QueryStockThread implements Runnable {
     @Autowired
     protected RedisTemplate redisTemplate = BeanUtils.getBeanByName("redisTemplate", RedisTemplate.class);
 
-    protected WebsocketSendListener sendListener = new WebsocketSendListener();
+//    protected WebsocketSendListener sendListener = new WebsocketSendListener();
+
+    public AdapterEchoSocket getAdapterEchoSocket() {
+        return adapterEchoSocket;
+    }
+
+    public void setAdapterEchoSocket(AdapterEchoSocket adapterEchoSocket) {
+        this.adapterEchoSocket = adapterEchoSocket;
+    }
+
+    protected AdapterEchoSocket adapterEchoSocket;
 
     public static boolean IsBreak = true;
 
@@ -131,7 +141,9 @@ public class QueryStockThread implements Runnable {
                             ccgpService.update(ccgpVO);
                             JSONObject jsonObject = JSONObject.fromObject(ccgpVO);
                             String temp = jsonObject.toString();
-                            sendListener.send(jsonObject.toString());
+                            if( adapterEchoSocket!=null && adapterEchoSocket.getRemote()!=null) {
+                                adapterEchoSocket.getRemote().sendStringByFuture(jsonObject.toString());
+                            }
                         }
                     }
 

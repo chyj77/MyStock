@@ -96,7 +96,7 @@
 	</bean>
 	<bean id="queryStockTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="queryStockJobDetail"/>
-		<property name="cronExpression" value="0/2 * 09 ? * MON-FRI"/><!-- 每隔2分钟触发一次 -->
+		<property name="cronExpression" value="0/2 * 8 ? * MON-FRI"/><!-- 每隔2秒钟触发一次 -->
 	</bean>
 	<bean id="queryStockJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="queryStockJob"/>

@@ -1,19 +1,17 @@
 package com.cyj.mystock.websocket.server;
 
-import java.io.IOException;
-
-import com.cyj.mystock.cache.ClientCache;
 import com.cyj.mystock.websocket.handler.WebsocketMsgHandler;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 import org.tio.websocket.server.WsServerStarter;
+
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2017/9/8.
  */
-@Component("websocketStarter")
-public class WebsocketStarter  implements ApplicationListener<ContextRefreshedEvent> {
+//@Component("websocketStarter")
+public class WebsocketStarter  //implements ApplicationListener<ContextRefreshedEvent>
+ {
     /**
      * @param args
      * @author tanyaowu
@@ -34,7 +32,7 @@ public class WebsocketStarter  implements ApplicationListener<ContextRefreshedEv
     public WebsocketStarter() {
     }
 
-    @Override
+//    @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         System.out.println("------------wsServerStarter is start ------------------");
         if(contextRefreshedEvent.getApplicationContext().getParent() == null) {

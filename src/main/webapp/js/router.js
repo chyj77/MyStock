@@ -54,7 +54,7 @@
             window.SPA_RESOLVE_INIT = null;
         },
         refresh:function(currentHash){
-            console.log("refresh");
+            // console.log("refresh");
             var self = this;
             if(self.beforeFun){
                 self.beforeFun({

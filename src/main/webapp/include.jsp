@@ -43,8 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var path = "<%=path %>";
     	var $j=jQuery.noConflict();
         var ByteBuffer = window.dcodeIO.ByteBuffer;
-        var ws = new WebSocket("ws://localhost:9321");
+        var ws = new WebSocket("ws://192.168.1.11/mystock/events/");
 //        var ws = new WebSocket("ws://47.94.93.65:9321");
+        ws.onopen = function (event) {
+            console.log("--------websocket open-----");
+            ws.send("hello jetty server");
+        };
     </script>
 </head>
 <body>
