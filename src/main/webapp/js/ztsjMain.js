@@ -181,7 +181,7 @@ SPA_RESOLVE_INIT = function(transition) {
                                 , function (result) {
                                     // when ajax returns (callback), update the grid to refresh the data
                                     var resultText = JSON.parse(result);
-                                    $j("#datepicker").val(resultText.rq);
+                                    $j("#datepicker1").val(resultText.rq);
                                     $j('[name="mrztgs"]').val(resultText.mrztgs);
                                     $j('[name="fyzbgs"]').val(resultText.fyzbgs);
                                     $j('[name="dqztgs"]').val(resultText.dqztgs);
@@ -240,7 +240,7 @@ SPA_RESOLVE_INIT = function(transition) {
 
     function doSave() {
         var ztsj = {};
-        ztsj.rq = $j("#datepicker").val();
+        ztsj.rq = $j("#datepicker1").val();
         ztsj.mrztgs = $j('[name="mrztgs"]').val();
         ztsj.fyzbgs = $j('[name="fyzbgs"]').val();
         ztsj.dqztgs = $j('[name="dqztgs"]').val();
@@ -252,6 +252,7 @@ SPA_RESOLVE_INIT = function(transition) {
         ztsj.bzsl = $j('[name="bzsl"]').val();
         ztsj.bzl = $j('[name="bzl"]').val();
         ztsj.recid = $j('[name="recid"]').val();
+        // alert($j("#datepicker1").val());
         var json = JSON.stringify(ztsj);
         $j.post(path + "/ztsj/doSave.htm", json
             , function (result) {
