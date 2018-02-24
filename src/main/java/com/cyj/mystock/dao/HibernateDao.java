@@ -1,11 +1,12 @@
 package com.cyj.mystock.dao;
 
-import java.math.BigInteger;
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.math.BigInteger;
+import java.util.List;
 
 
 public  class HibernateDao<T> {
@@ -24,7 +25,8 @@ public  class HibernateDao<T> {
 
 	@SuppressWarnings("unchecked")
 	public  List<T> queryAll(String arg0,Class<?> arg1){
-		return (List<T>) this.getSession().createNativeQuery(arg0, arg1).getResultList();
+		Query query = this.getSession().createNativeQuery(arg0, arg1);
+		return (List<T>) query.getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -1,14 +1,13 @@
 package com.cyj.mystock.dao.spcz;
 
+import com.cyj.mystock.dao.HibernateDao;
+import com.cyj.mystock.entity.Spcz;
+import org.springframework.stereotype.Repository;
+
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Repository;
-
-import com.cyj.mystock.dao.HibernateDao;
-import com.cyj.mystock.entity.Spcz;
 
 @Repository
 public class SpczDao<T> extends HibernateDao<T> {
@@ -44,6 +43,11 @@ public class SpczDao<T> extends HibernateDao<T> {
 		}
 		String sort =" order by "+sortname+" " +sortorder;
 		queryString +=cond + sort + limit;
+//		List<Spcz> list =(List<Spcz>) this.queryAll(queryString, Spcz.class);
+//		for(Spcz spcz:list) {
+//			System.out.println("SpczDao:"+spcz.getName());
+//			System.out.println("SpczDao:"+spcz.getLuoji());
+//		}
 		return (List<Spcz>) this.queryAll(queryString, Spcz.class); 
 	}
 	public void saveOrUpdate(Spcz spcz){

@@ -3,15 +3,7 @@
  */
 package com.cyj.mystock.entity;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -79,12 +71,12 @@ public class Ztsj {
 		this.dqztgs = dqztgs;
 	}
 	public String getZtzdgn() {
-		try {
-			if(ztzdgn!=null)
-				ztzdgn=new String(ztzdgn.getBytes(Charset.defaultCharset()),"GB18030");
-		} catch (UnsupportedEncodingException e) {
-			return  null;
-		}
+//		try {
+//			if(ztzdgn!=null)
+//				ztzdgn=new String(ztzdgn.getBytes(Charset.defaultCharset()),"GB18030");
+//		} catch (UnsupportedEncodingException e) {
+//			return  null;
+//		}
 		return ztzdgn;
 	}
 	public void setZtzdgn(String ztzdgn) {

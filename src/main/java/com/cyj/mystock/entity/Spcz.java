@@ -1,14 +1,6 @@
 package com.cyj.mystock.entity;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "SHIPANCAOZUO")
@@ -22,7 +14,7 @@ public class Spcz {
 	private String rq;
 	@Column(name = "code", length = 6)
 	private String code;
-	@Column(name = "name", length = 255)
+	@Column(name = "name")
 	private String name;
 	@Column(name = "caozuo")
 	private String caozuo;
@@ -51,12 +43,6 @@ public class Spcz {
 		this.code = code;
 	}
 	public String getName() {
-		try {
-			if(name!=null)
-				name=new String(name.getBytes(Charset.defaultCharset()),"GBK");
-		} catch (UnsupportedEncodingException e) {
-			return  null;
-		}
 		return name;
 	}
 	public void setName(String name) {

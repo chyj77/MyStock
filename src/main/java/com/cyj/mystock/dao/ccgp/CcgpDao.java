@@ -1,16 +1,13 @@
 package com.cyj.mystock.dao.ccgp;
 
+import com.cyj.mystock.dao.HibernateDao;
+import com.cyj.mystock.entity.Ccgp;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Repository;
-
-import com.cyj.mystock.dao.HibernateDao;
-import com.cyj.mystock.entity.Ccgp;
-import com.cyj.mystock.entity.Spcz;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 @Repository
 @Transactional
