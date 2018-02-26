@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        var ws = new WebSocket("ws://123.206.87.88:9321/");
         ws.onopen = function (event) {
             console.log("--------websocket open-----");
-            ws.send("hello jetty server");
+            // ws.send("hello jetty server");
         };
     </script>
 </head>

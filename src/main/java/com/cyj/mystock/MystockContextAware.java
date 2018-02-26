@@ -24,7 +24,7 @@ public class MystockContextAware implements ApplicationContextAware {
 		String nowDateValue = format.format(date);
 		int nowDate = Integer.parseInt(nowDateValue);
 		if(nowDate>915){
-//			new Thread(thread).start();
+			new Thread(thread).start();
 		}
 	}
 
